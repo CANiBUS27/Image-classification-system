@@ -2,6 +2,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue?logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.0%2B-ee4c2c?logo=pytorch&logoColor=white)](https://pytorch.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-orange?logo=jupyter&logoColor=white)](https://jupyter.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
@@ -13,11 +14,11 @@ This repository includes a complete pipeline—from environment setup and automa
 
 ## 🚀 Key Features
 
+*   **Interactive Web Application:** A polished, user-friendly Streamlit web application (`app.py`) featuring drag-and-drop file uploads, image preview, and real-time visualization of predictions and confidence scores.
 *   **Custom CNN Architecture:** Includes 3 Convolutional blocks with batch normalization, ReLU activation, and max pooling for feature extraction.
 *   **Automated Data Pipeline:** Uses PyTorch `ImageFolder` and `DataLoader` to automatically structure, resize, normalize, and batch training and test sets.
 *   **Robust Environment Checkpoints:** Features runtime crash fixes (e.g., Windows OpenMP duplicate library crash mitigation).
 *   **Dynamic Weight Checkpointing:** Automatically tracks validation metrics and saves the best model state (`best_image_classifier.pth`) when test accuracy improves.
-*   **Clean Inference Interface:** A user-friendly, single-function classification pipeline to test new, unseen images with instant feedback.
 
 ---
 
@@ -36,6 +37,7 @@ Image classification system/
 │       ├── cats/
 │       ├── dogs/
 │       └── flowers/
+├── app.py                         # Streamlit web application for interactive, visual inference
 ├── best_image_classifier.pth      # Saved state dictionary of the highest-performing model
 ├── dataset_test.ipynb             # Full Jupyter Notebook containing dataset validation, model, training, and inference
 └── README.md                      # Project documentation (this file)
@@ -78,7 +80,7 @@ graph TD
 Ensure you have Python 3.8+ and the following packages installed:
 
 ```bash
-pip install torch torchvision pillow matplotlib jupyter
+pip install torch torchvision pillow matplotlib jupyter streamlit
 ```
 
 ### 2. Dataset Preparation
@@ -112,6 +114,16 @@ Data set/
    * **Cell 1:** Verifies PyTorch installation, environment stability variables, and prints details about your training and test datasets.
    * **Cell 2:** Defines the custom CNN architecture and initializes it on the available device (GPU with CUDA or CPU).
    * **Cell 3:** Runs the training loop over 10 epochs. When a new highest test accuracy is met, weights are automatically saved to `best_image_classifier.pth`.
+
+### 4. Running the Web Application
+
+Launch the Streamlit web dashboard to classify images interactively:
+
+```bash
+streamlit run app.py
+```
+
+This will open the application in your default web browser (typically at `http://localhost:8501`). Simply upload an image and click **Run Neural Network Inference** to see the prediction and confidence score!
 
 ---
 
